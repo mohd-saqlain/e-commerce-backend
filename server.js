@@ -8,6 +8,8 @@ connectToMongo();
 app.use(express.json());
 app.use(cors());
 app.use(require('./routes/product'))
+app.use(require('./routes/order'))
+app.use(require('./routes/user'))
 
 app.get('/', async (req,res)=> {
     res.send("Hello World");

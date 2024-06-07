@@ -4,14 +4,19 @@ const mongoose = require("mongoose");
 const orderSchema = new mongoose.Schema({
     user:{
         type:mongoose.Types.ObjectId,
-        ref:'Client',
+        ref:'User',
         required:[true,"User is required"]
     },
-    product:[{
+    products:[{
+        product:{
         type:mongoose.Types.ObjectId,
-        ref:'Order',
+        ref:'Product',
         required:[true,"User is required"]
-    }],
+    },
+    quantity:{
+        type:String,
+    }
+}],
     totalAmount:{
         type:String,
         required:[true,"Amount is required"]
@@ -20,6 +25,8 @@ const orderSchema = new mongoose.Schema({
         type:String,
         required:[true,"Address is required"]
     }
+},{
+    timestamps:true,
 });
 
 module.exports = mongoose.model('Order',orderSchema);

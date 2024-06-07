@@ -10,9 +10,13 @@ const getAllOrders = async (req,res) => {
       }   
 } 
 
-const createOrder = async () => {
+const createOrder = async (req,res) => {
     try{
-        res.status(200).json({status:true,message:"API Under construction"});
+        const newOrder = await Order.create({...req.body})
+        if(!newOrder){
+          return res.status(400).json({status:true,message:"API Under construction"});
+        }
+        res.status(200).json({status:true,message:"Captured Successfully",data:newOrder});
     }
     catch(err){
         res.status(400).json({status:false,message:err.message});
